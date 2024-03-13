@@ -29,7 +29,10 @@ public class Main {
         List<Cat> cats = mapper.readValue(response.getEntity().getContent(),
                 new TypeReference<>() {
                 });
-        cats.stream().filter(value -> value.getUpvotes() != null && Integer.parseInt(value.getUpvotes()) > 0)
-                .forEach(System.out::println);
+        for (Cat value : cats) {
+            if (value.getUpvotes() > 0) {
+                System.out.println(value);
+            }
+        }
     }
 }
